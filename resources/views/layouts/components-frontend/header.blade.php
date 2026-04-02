@@ -4,7 +4,7 @@
       <a href="{{ url('/')}}" class="logo d-flex align-items-center">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="{{ ('assets/frontend/img/logo.png')}}" alt=""> -->
-        <h1 class="sitename">KD<span>M</span></h1>
+        <h1 class="sitename">SIKA<span>S</span></h1>
       </a>
 
       <nav id="navmenu" class="navmenu">

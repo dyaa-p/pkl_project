@@ -1,60 +1,115 @@
 @extends('layouts.backend')
+
+@section('styles')
+<style>
+.card-custom {
+    border-radius: 18px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+}
+
+.detail-label {
+    font-weight: 600;
+    color: #6c757d;
+    margin-bottom: 4px;
+}
+
+.detail-value {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.badge-custom {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+}
+
+.badge-pemasukan {
+    background-color: #20c997;
+    color: white;
+}
+
+.badge-pengeluaran {
+    background-color: #ff7b54;
+    color: white;
+}
+</style>
+@endsection
+
 @section('content')
 <div class="container-fluid">
-    <div class="row">
-        <div class="col">
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="mb-0"> 
-                        @if($transaksi->jenis == "pemasukkan")
-                            <h5>Detail Pemasukkan</h5>
-                        @elseif($transaksi->jenis == "pengeluaran")
-                            <h5>Detail Pengeluaran</h5>
-                        @endif
-                    </h5>
-                </div>
 
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-6">
+<div class="card card-custom border-0">
+<div class="card-body p-4">
 
-                            <div class="mb-3">
-                                <label><strong>Jenis : </strong></label>
-                                <div>{{ $transaksi->jenis}}</div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label><strong> Keterangan : </strong></label>
-                                    <div>{{ $transaksi->keterangan }}</div>
-                                </div>
-                            </div>
-                        </div>
+{{-- TITLE --}}
+<h4 class="mb-4">
+@if($transaksi->jenis == "pemasukkan")
+Detail Pemasukan
+@else
+Detail Pengeluaran
+@endif
+</h4>
 
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label><strong> Jumlah : </strong></label>
-                                <div>Rp. {{number_format($transaksi->jumlah,'0', '.', '.',)}}</div>
-                            </div>
-                            <div class="mb-3">
-                                <label><strong>Tanggal : </strong></label>
-                                <div>{{ $transaksi->tanggal->format('d M Y') }}</div>
-                            </div>
-                        </div>
-                    </div>
+<div class="row">
 
-                    <div class="row mt-3">
+{{-- KIRI --}}
+<div class="col-md-6 mb-3">
 
+<div class="mb-4">
+<div class="detail-label">Jenis</div>
 
-                    </div>
+@if($transaksi->jenis == "pemasukkan")
+<span class="badge badge-custom badge-pemasukan">
+Pemasukan
+</span>
+@else
+<span class="badge badge-custom badge-pengeluaran">
+Pengeluaran
+</span>
+@endif
+</div>
 
-                    <div class="mt-4">
-                        <a href="{{ route('backend.transaksi.index') }}" class="btn btn-sm btn-secondary">
-                            <i class="fas fa-arrow-left"></i> Kembali
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="mb-4">
+<div class="detail-label">Keterangan</div>
+<div class="detail-value">
+{{ $transaksi->keterangan }}
+</div>
+</div>
+
+</div>
+
+{{-- KANAN --}}
+<div class="col-md-6 mb-3">
+
+<div class="mb-4">
+<div class="detail-label">Jumlah</div>
+<div class="detail-value">
+Rp {{ number_format($transaksi->jumlah,0,'.','.') }}
+</div>
+</div>
+
+<div class="mb-4">
+<div class="detail-label">Tanggal</div>
+<div class="detail-value">
+{{ $transaksi->tanggal->format('d M Y') }}
+</div>
+</div>
+
+</div>
+
+</div>
+
+{{-- BUTTON --}}
+<div class="text-start mt-3">
+<a href="{{ route('backend.transaksi.index') }}"
+class="btn btn-info btn-sm">
+← Kembali
+</a>
+</div>
+
+</div>
+</div>
+
 </div>
 @endsection

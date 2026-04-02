@@ -1,74 +1,160 @@
 @extends('layouts.backend')
+
 @section('styles')
-  <link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.bootstrap5.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.bootstrap5.css">
+<style>
+    .card-custom {
+        border-radius: 20px;
+        border: none;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    }
+
+    .badge-status {
+        padding: 6px 14px;
+        border-radius: 50px;
+        font-weight: 500;
+        font-size: 13px;
+    }
+
+    .badge-lunas {
+        background: #1abc9c;
+        color: white;
+    }
+
+    .badge-belum {
+        background: #e74c3c;
+        color: white;
+    }
+
+    .jumlah-badge {
+        background: #e8f0ff;
+        color: #4e73df;
+        padding: 6px 12px;
+        border-radius: 10px;
+        font-weight: 500;
+    }
+</style>
 @endsection
+
+
 @section('content')
 <div class="container-fluid">
-    <div class="card">
+
+    <div class="card card-custom">
         <div class="card-body">
-          <div class="d-flex mb-1 align-items-center">
-            <div>
-              <h4 class="card-title mb-0">Catatan kas</h4>
+
+            <!-- HEADER -->
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <h4 class="fw-semibold mb-0">
+                        💳 Catatan Kas
+                    </h4>
+                    <small class="text-muted">
+                        Daftar pembayaran kas siswa
+                    </small>
+                </div>
+
+                <a href="{{ route('backend.kas.create') }}" class="btn btn-primary rounded-pill px-4">
+                    + Tambah Data
+                </a>
             </div>
-          </div>
-          <p class="card-subtitle mb-3">
-          </p>
-          <div class="table-responsive border rounded-4">
-            <table class="table mb-0" id="dataKas">
-              <thead class="table-dark">
-                <!-- start row -->
-                <tr>
-                  <th class="text-white">#</th>
-                  <th class="text-white">Nama</th>
-                  <th class="text-white">Status</th>
-                  <th class="text-white">Minggu Ke</th>
-                  <th class="text-white">Bulan</th>
-                  <th class="text-white">Jumlah</th>
-                  <th class="text-white">Tanggal Lunas</th>
-                  <th class="text-white">Aksi</th>
-                </tr>
-                <!-- end row -->
-              </thead>
-              <tbody>
-                @php
-                    $no = 1;
-                @endphp
-                @foreach($kas as $data)
-                <tr>
-                  <td>{{ $no++ }}</td>
-                  <td>{{ $data->users->name }}</td>
-                  <td>
-                  @if($data->status == 'belum')
-                      <span class="badge bg-danger text-dark">Belum</span>
-                  @elseif($data->status == 'lunas')
-                      <span class="badge bg-success text-dark">Lunas</span>
-                  @endif
-                  </td>
-                  <td>{{ $data->minggu_ke }}</td>
-                  <td>{{\Carbon\Carbon::create()->month($data->bulan)->translatedFormat('F')}}</td>
-                  <td>Rp. {{ number_format($data->jumlah, '0','.','.') }}</td>
-                  <td>{{ $data->tanggal_bayar->format('d M Y') }}</td>
-                  <td>
-                    <a href="{{ route('backend.kas.show', $data->id) }}" class="btn btn-info btn-sm">Detail</a>
-                    <a href="{{ route('backend.kas.destroy', $data->id) }}" class="btn btn-sm btn-danger" data-confirm-delete="true">Hapus</a>
-                  </td>
-                </tr>
-                @endforeach
-              </tbody>
-            </table>
-          </div>
+
+            <!-- TABLE -->
+            <div class="table-responsive">
+                <table class="table align-middle" id="dataKas">
+
+                    <thead class="table-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Nama</th>
+                            <th>Status</th>
+                            <th>Minggu</th>
+                            <th>Bulan</th>
+                            <th>Jumlah</th>
+                            <th>Tanggal Lunas</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @php $no = 1; @endphp
+
+                        @foreach($kas as $data)
+                        <tr>
+
+                            <td>{{ $no++ }}</td>
+
+                            <td class="fw-semibold">
+                                {{ $data->users->name }}
+                            </td>
+
+                            <!-- STATUS -->
+                            <td>
+                                @if($data->status == 'belum')
+                                    <span class="badge-status badge-belum">
+                                        Belum
+                                    </span>
+                                @else
+                                    <span class="badge-status badge-lunas">
+                                        Lunas
+                                    </span>
+                                @endif
+                            </td>
+
+                            <td>{{ $data->minggu_ke }}</td>
+
+                            <td>
+                                {{ \Carbon\Carbon::create()->month($data->bulan)->translatedFormat('F') }}
+                            </td>
+
+                            <!-- JUMLAH -->
+                            <td>
+                                <span class="jumlah-badge">
+                                    Rp {{ number_format($data->jumlah,0,'.','.') }}
+                                </span>
+                            </td>
+
+                            <td>
+                                {{ $data->tanggal_bayar->format('d M Y') }}
+                            </td>
+
+                            <!-- AKSI -->
+                            <td>
+                                <a href="{{ route('backend.kas.show',$data->id) }}"
+                                   class="btn btn-sm btn-info rounded-circle">
+                                   i
+                                </a>
+
+                                <a href="{{ route('backend.kas.destroy',$data->id) }}"
+                                   class="btn btn-sm btn-danger rounded-circle"
+                                   data-confirm-delete="true">
+                                   🗑
+                                </a>
+                            </td>
+
+                        </tr>
+                        @endforeach
+                    </tbody>
+
+                </table>
+            </div>
+
         </div>
     </div>
+
 </div>
 @endsection
+
+
 @push('scripts')
-    <script src="https://cdn.datatables.net/2.3.2/js/dataTables.js"></script>
-    <script src="https://cdn.datatables.net/2.3.2/js/dataTables.bootstrap5.js"></script>
-    <script>
-    new DataTable('#dataKas', {
-      language: {
-        url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/id.json'
-      }
-    });
-  </script>
+<script src="https://cdn.datatables.net/2.3.2/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/2.3.2/js/dataTables.bootstrap5.js"></script>
+
+<script>
+new DataTable('#dataKas', {
+    language: {
+        url: 'https://cdn.datatables.net/plug-ins/2.0.0/i18n/id.json'
+    }
+});
+</script>
 @endpush

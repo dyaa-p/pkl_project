@@ -13,7 +13,7 @@
 
       <div class="d-block d-lg-none py-4">
       <a href="{{ url('admin')}}" class="text-nowrap logo-img">
-        <h2><b>KD<span style="color: rgb(5, 146, 227)">M</span></b></h2>
+        <h2><b>SIKA<span style="color: rgb(5, 146, 227)">S</span></b></h2>
       </a>
       </div>
       <a class="navbar-toggler nav-icon-hover-bg rounded-circle p-0 mx-0 border-0" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,7 +61,7 @@
               <a class="nav-link pe-0" href="javascript:void(0)" id="drop1" aria-expanded="false">
                 <div class="d-flex align-items-center">
                   <div class="user-profile-img">
-                    <img src="{{ asset('assets/backend/images/profile/user-1.jpg') }}" class="rounded-circle" width="35" height="35" alt="modernize-img" />
+                    <img src="{{ asset('assets/backend/images/profile/admin sikas.jpg') }}" class="rounded-circle" width="35" height="35" alt="modernize-img" />
                   </div>
                 </div>
               </a>
@@ -71,7 +71,7 @@
                     <h5 class="mb-0 fs-5 fw-semibold">Profil</h5>
                   </div>
                   <div class="d-flex align-items-center py-9 mx-7 border-bottom">
-                    <img src="{{ asset('assets/backend/images/profile/user-1.jpg') }}" class="rounded-circle" width="80" height="80" alt="modernize-img" />
+                    <img src="{{ asset('assets/backend/images/profile/admin sikas.jpg') }}" class="rounded-circle" width="80" height="80" alt="modernize-img" />
                     <div class="ms-3">
                       <h5 class="mb-1 fs-3">{{ Auth::user()->name }}</h5>
                       <span class="mb-1 d-block">{{ Auth::user()->isAdmin == 1 ? 'Bendahara' : ''}}</span>
@@ -620,7 +620,7 @@
               <a class="nav-link pe-0" href="javascript:void(0)" id="drop1" aria-expanded="false">
                 <div class="d-flex align-items-center">
                   <div class="user-profile-img">
-                    <img src="{{ asset('assets/backend/images/profile/user-1.jpg') }}" class="rounded-circle" width="35" height="35" alt="modernize-img" />
+                    <img src="{{ asset('assets/backend/images/profile/admin sikas.jpg') }}" class="rounded-circle" width="35" height="35" alt="modernize-img" />
                   </div>
                 </div>
               </a>
@@ -630,7 +630,7 @@
                     <h5 class="mb-0 fs-5 fw-semibold">User Profile</h5>
                   </div>
                   <div class="d-flex align-items-center py-9 mx-7 border-bottom">
-                    <img src="{{ asset('assets/backend/images/profile/user-1.jpg') }}" class="rounded-circle" width="80" height="80" alt="modernize-img" />
+                    <img src="{{ asset('assets/backend/images/profile/admin sikas.jpg') }}" class="rounded-circle" width="80" height="80" alt="modernize-img" />
                     <div class="ms-3">
                       <h5 class="mb-1 fs-3">Mathew Anderson</h5>
                       <span class="mb-1 d-block">Designer</span>
