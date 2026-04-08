@@ -15,7 +15,8 @@ class KasMingguan extends Model
         'tanggal_bayar' => 'datetime',
     ];
 
-    public function users(){
-        return $this->belongsTo(User::class, 'user_id');
-    }
+    public function users()
+{
+    return $this->belongsTo(User::class, 'user_id');
+}
 }

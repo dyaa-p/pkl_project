@@ -54,8 +54,9 @@
                     </small>
                 </div>
 
-                <a href="{{ route('backend.kas.create') }}" class="btn btn-primary rounded-pill px-4">
-                    + Tambah Data
+                <!-- ✅ FIX: arahkan ke pembayaran -->
+                <a href="{{ route('backend.pembayaran.create') }}" class="btn btn-primary rounded-pill px-4">
+                    + Tambah Pembayaran
                 </a>
             </div>
 
@@ -85,7 +86,7 @@
                             <td>{{ $no++ }}</td>
 
                             <td class="fw-semibold">
-                                {{ $data->users->name }}
+                                {{ $data->users->name ?? '-' }}
                             </td>
 
                             <!-- STATUS -->
@@ -115,21 +116,30 @@
                             </td>
 
                             <td>
-                                {{ $data->tanggal_bayar->format('d M Y') }}
+                                {{ $data->tanggal_bayar ? $data->tanggal_bayar->format('d M Y') : '-' }}
                             </td>
 
                             <!-- AKSI -->
                             <td>
+
+                                <!-- DETAIL -->
                                 <a href="{{ route('backend.kas.show',$data->id) }}"
                                    class="btn btn-sm btn-info rounded-circle">
                                    i
                                 </a>
 
-                                <a href="{{ route('backend.kas.destroy',$data->id) }}"
-                                   class="btn btn-sm btn-danger rounded-circle"
-                                   data-confirm-delete="true">
-                                   🗑
-                                </a>
+                                <!-- ✅ FIX DELETE -->
+                                <form action="{{ route('backend.kas.destroy',$data->id) }}" 
+                                      method="POST" 
+                                      style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-sm btn-danger rounded-circle"
+                                            onclick="return confirm('Yakin hapus?')">
+                                        🗑
+                                    </button>
+                                </form>
+
                             </td>
 
                         </tr>

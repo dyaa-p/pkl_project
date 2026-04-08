@@ -149,12 +149,16 @@
                                 <td>{{ $no++ }}</td>
 
                                 <td>
-                                    <span class="badge badge-soft px-3 py-2">
+                                    <span class="badge px-3 py-2 
+                                        {{ $data->jenis == 'pemasukan' ? 'bg-success-subtle text-success' : 'badge-soft' }}">
+                                        
                                         {{ ucfirst($data->jenis) }}
                                     </span>
                                 </td>
 
-                                <td class="fw-semibold text-danger">
+                                <td class="fw-semibold 
+                                    {{ $data->jenis == 'pemasukan' ? 'text-success' : 'text-danger' }}">
+                                    
                                     Rp {{ number_format($data->jumlah,0,'.','.') }}
                                 </td>
 
@@ -166,6 +170,32 @@
                                     {{ $data->tanggal->format('d M Y') }}
                                 </td>
                             </tr>
+
+                        @endforeach
+
+                        @foreach($pemasukan as $data)
+
+                        <tr>
+                            <td>{{ $no++ }}</td>
+
+                            <td>
+                                <span class="badge bg-success-subtle text-success px-3 py-2">
+                                    Pemasukan
+                                </span>
+                            </td>
+
+                            <td class="fw-semibold text-success">
+                                Rp {{ number_format($data->jumlah,0,'.','.') }}
+                            </td>
+
+                            <td class="text-start">
+                                {{ $data->keterangan }}
+                            </td>
+
+                            <td class="text-muted">
+                                {{ \Carbon\Carbon::parse($data->tanggal)->format('d M Y') }}
+                            </td>
+                        </tr>
 
                         @endforeach
 

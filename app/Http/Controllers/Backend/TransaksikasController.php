@@ -17,7 +17,7 @@ class TransaksikasController extends Controller
         $text      = "Apakah Anda Yakin??";
         confirmDelete($title, $text);
 
-        return view('backend.transaksi.index', compact('transaksi'));
+        return view('backend.transaksi.index', compact('transaksi', ));
     }
 
     /**

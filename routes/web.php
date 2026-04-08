@@ -36,7 +36,8 @@ Route::group([
 
     Route::resource('/pembayaran', PembayaranController::class);
 
-    Route::resource('/kas', KasmingguanController::class);
+    Route::resource('/kas', KasmingguanController::class)
+    ->except(['create', 'store', 'edit', 'update']);
 
     Route::get('/export', [ExportController::class, 'index'])->name('export.index');
 });

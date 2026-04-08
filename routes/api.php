@@ -14,3 +14,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
         'user' => $request->user()
     ]);
 });
+
+Route::get('/dashboard', function () {
+    return response()->json([
+        'saldo' => 205000,
+        'pemasukan' => 300000,
+        'pengeluaran' => 95000
+    ]);
+});

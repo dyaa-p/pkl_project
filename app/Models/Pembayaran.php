@@ -6,13 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pembayaran extends Model
 {
-    public $fillable = ['user_id', 'jumlah', 'tanggal'];
+    protected $fillable = ['user_id', 'jumlah', 'tanggal'];
 
-    protected $casts = [
-        'tanggal' => 'datetime',
-    ];
-
-    public function users(){
-        return $this->belongsTo(User::class, 'user_id');
+    // ✅ RELASI
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

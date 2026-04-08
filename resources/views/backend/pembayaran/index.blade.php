@@ -4,13 +4,10 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.bootstrap5.css">
 
 <style>
-
-/* ===== Background halaman ===== */
 body {
     background: linear-gradient(135deg, #eef2ff, #e0e7ff);
 }
 
-/* ===== Card Modern Glass ===== */
 .card {
     border-radius: 20px;
     border: none;
@@ -24,22 +21,15 @@ body {
     transform: translateY(-3px);
 }
 
-/* ===== Header tabel ===== */
 .table thead {
     background: linear-gradient(90deg,#4f46e5,#6366f1);
     color: white;
-}
-
-/* ===== Hover Row ===== */
-.table tbody tr {
-    transition: 0.2s;
 }
 
 .table tbody tr:hover {
     background: #eef2ff;
 }
 
-/* ===== Tombol Tambah ===== */
 .btn-tambah {
     background: linear-gradient(90deg,#4f46e5,#6366f1);
     color: white;
@@ -49,35 +39,18 @@ body {
     border: none;
 }
 
-.btn-tambah:hover {
-    opacity: 0.9;
-    color: white;
-}
-
-/* ===== Tombol Aksi ===== */
 .btn-edit {
     background: #f59e0b;
-    border: none;
     border-radius: 8px;
     color: white;
 }
 
 .btn-hapus {
     background: #ef4444;
-    border: none;
     border-radius: 8px;
     color: white;
 }
 
-.btn-edit:hover {
-    background: #d97706;
-}
-
-.btn-hapus:hover {
-    background: #dc2626;
-}
-
-/* Badge jumlah */
 .badge-jumlah {
     background: #dbeafe;
     color: #1e40af;
@@ -85,7 +58,6 @@ body {
     border-radius: 8px;
     font-size: 13px;
 }
-
 </style>
 @endsection
 
@@ -96,15 +68,10 @@ body {
     <div class="card">
         <div class="card-body p-4">
 
-            {{-- Header --}}
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <div>
-                    <h4 class="fw-bold mb-1">
-                        💳 Data Pembayaran Kas
-                    </h4>
-                    <small class="text-muted">
-                        Daftar transaksi pembayaran kas siswa
-                    </small>
+                    <h4 class="fw-bold mb-1">💳 Data Pembayaran Kas</h4>
+                    <small class="text-muted">Daftar transaksi pembayaran kas siswa</small>
                 </div>
 
                 <a href="{{ route('backend.pembayaran.create')}}" class="btn btn-tambah">
@@ -112,17 +79,16 @@ body {
                 </a>
             </div>
 
-            {{-- Table --}}
             <div class="table-responsive border rounded-4 overflow-hidden">
                 <table id="dataBayar" class="table align-middle mb-0">
 
                     <thead>
                         <tr>
-                            <th width="50">No</th>
+                            <th>No</th>
                             <th>Nama</th>
                             <th>Jumlah</th>
                             <th>Tanggal</th>
-                            <th width="170" class="text-center">Aksi</th>
+                            <th class="text-center">Aksi</th>
                         </tr>
                     </thead>
 
@@ -133,8 +99,9 @@ body {
                         <tr>
                             <td>{{ $no++ }}</td>
 
+                            <!-- ✅ FIX DI SINI -->
                             <td class="fw-semibold">
-                                {{ $data->users->name }}
+                                {{ $data->user->name ?? '-' }}
                             </td>
 
                             <td>
@@ -144,7 +111,7 @@ body {
                             </td>
 
                             <td>
-                                {{ $data->tanggal->format('d M Y') }}
+                                {{ \Carbon\Carbon::parse($data->tanggal)->format('d M Y') }}
                             </td>
 
                             <td class="text-center">

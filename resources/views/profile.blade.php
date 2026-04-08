@@ -59,7 +59,7 @@
                                     <div class="mb-3">
                                         <label class="text-muted">Nama</label>
                                         <h6 class="fw-bold">
-                                            {{ Auth::user()->name }}
+                                            {{ Auth::user()->name}}
                                         </h6>
                                     </div>
 
