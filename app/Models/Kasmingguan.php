@@ -3,10 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User; // ✅ TAMBAH INI
 
 class KasMingguan extends Model
 {
-
     protected $table = 'kasmingguans';
 
     public $fillable = ['user_id', 'status', 'minggu_ke', 'bulan', 'jumlah', 'tanggal_bayar'];
@@ -15,8 +15,8 @@ class KasMingguan extends Model
         'tanggal_bayar' => 'datetime',
     ];
 
-    public function users()
-{
-    return $this->belongsTo(User::class, 'user_id');
-}
+    public function user() // 🔧 ganti ke singular
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
