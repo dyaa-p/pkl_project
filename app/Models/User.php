@@ -46,9 +46,9 @@ class User extends Authenticatable
         return $this->role === 'user';
     }
 
-    public function kasmingguan()
+    public function kasMingguan()
     {
-        return $this->hasMany(Kasmingguan::class);
+        return $this->hasMany(KasMingguan::class);
     }
 
     public function transaksikas()
@@ -58,6 +58,6 @@ class User extends Authenticatable
 
     public function pembayaran()
     {
-        return $this->hasMany(pembayaran::class);
+        return $this->hasMany(Pembayaran::class);
     }
 }

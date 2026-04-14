@@ -32,7 +32,7 @@ class ExportController extends Controller
         $transaksi = collect();
 
         if ($jenis === 'kas') {
-            $kasQuery = KasMingguan::with('users');
+            $kasQuery = KasMingguan::with('user');
             if ($awal && $akhir) {
                 $kasQuery->whereBetween('tanggal_bayar', [$awal, $akhir]);
             }

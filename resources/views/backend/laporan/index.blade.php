@@ -224,10 +224,10 @@ Saldo Tunggakan : <b>Rp {{ number_format($saldoNunggak,0,'.','.') }}</b>
 
 <td>{{ $no++ }}</td>
 
-<td class="fw-semibold">{{ $data->users->name }}</td>
+<td class="fw-semibold">{{ $data->user->name }}</td>
 
 <td>
-{{ $data->users->isAdmin ? 'Bendahara' : 'Siswa' }}
+{{ $data->user->isAdmin ? 'Bendahara' : 'Siswa' }}
 </td>
 
 <td>

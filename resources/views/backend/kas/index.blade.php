@@ -86,7 +86,7 @@
                             <td>{{ $no++ }}</td>
 
                             <td class="fw-semibold">
-                                {{ $data->users->name ?? '-' }}
+                                {{ $data->user->name ?? '-' }}
                             </td>
 
                             <!-- STATUS -->

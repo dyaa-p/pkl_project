@@ -5,7 +5,7 @@
         <div class="col">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="mb-0"> Riwayat Kas {{ $kas->users->name }} </h5>
+                    <h5 class="mb-0"> Riwayat Kas {{ $kas->user->name }} </h5>
                 </div>
 
                 <div class="card-body">
@@ -13,7 +13,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label><strong>Nama : </strong></label>
-                                <div>{{$kas->users->name}}</div>
+                                <div>{{$kas->user->name}}</div>
                             </div>
 
                             <div class="mb-3">
