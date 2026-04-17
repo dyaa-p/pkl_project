@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User; // ✅ TAMBAH INI
+use App\Models\User; 
 
 class KasMingguan extends Model
 {

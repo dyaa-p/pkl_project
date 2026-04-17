@@ -54,7 +54,7 @@
                     </small>
                 </div>
 
-                <!-- ✅ FIX: arahkan ke pembayaran -->
+                
                 <a href="{{ route('backend.pembayaran.create') }}" class="btn btn-primary rounded-pill px-4">
                     + Tambah Pembayaran
                 </a>

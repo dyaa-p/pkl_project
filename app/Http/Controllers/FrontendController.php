@@ -18,7 +18,6 @@ class FrontendController extends Controller
         // Pengeluaran dari TransaksiKas
         $transaksi = Transaksikas::where('jenis', 'pengeluaran')->latest()->get();
 
-        // ✅ Tambahkan ini — pemasukan dari tabel Pembayaran
         $pemasukan = Transaksikas::where('jenis', 'pemasukkan')->latest()->get();
 
         return view('index', compact(
@@ -27,7 +26,7 @@ class FrontendController extends Controller
             'totalPembayaran',
             'saldoKas',
             'transaksi',
-            'pemasukan'   // ✅ kirim ke view
+            'pemasukan' 
         ));
     }
 
